@@ -1,0 +1,67 @@
+header{
+
+background: rgba(147,206,222,1);
+background: -moz-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(147,206,222,1)), color-stop(41%, rgba(117,189,209,1)), color-stop(100%, rgba(73,165,191,1)));
+background: -webkit-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+background: -o-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+background: -ms-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+background: linear-gradient(to right, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#49a5bf', GradientType=1 );
+color:#F8F8FF;
+}
+li{
+
+text-align:center;
+}
+body{
+
+	background:url(../Images/fondo.png) no-repeat;
+	background-size:cover;
+	
+
+}
+a{
+	
+}
+.alert-info{
+	margin: 5px;
+}
+.alert-danger{
+	margin: 5px;
+}
+.alert-success{
+	margin: 5px;
+}
+canvas{
+	position:absolute;
+	width: 350px;
+	left: 3px;
+	z-index: 4;	
+}
+
+#volcan {
+	position:relative;
+	padding: 5px;
+	width: 360px;
+	height: 210px;
+
+}
+
+#nubBlanca{
+	/*border: 2px solid yellow;*/
+	left: 3px;
+	z-index: 1;
+}
+
+#bolasFuego{
+	/*border: 2px solid red;*/
+	left: 0px;
+	z-index: 3;
+}
+
+#ceniza{
+	/*border: 2px solid red;*/
+	left: 3px;
+	z-index: 2;
+}
