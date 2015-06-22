@@ -1,0 +1,136 @@
+{% extends 'Base.html' %}
+{% block titulo %} Bienvenido{% endblock %}
+{% block contenido%}
+
+			<div class="container">
+			<section class="main" row>		
+				<aside class="col-md-3 " ><br><br>
+				{% load staticfiles %}
+				<img src="{% static 'Images/nina.gif' %}" width="125" height="130"><br><br>
+
+				<div class="panel panel-success">
+					
+					
+						<div class="panel-heading"><h4>¿Qué son las erupciones volcánicas?</h4></div>
+						<div class="panel-body"> <p align="justify">Las erupciones volcánicas son explosiones o emanaciones de lava, ceniza y gases tóxicos desde el interior de la Tierra a través de los volcanes.
+					</p> </div></div>
+				<div class="panel panel-success">
+					
+						<div class="panel-heading"><h4>¿Qué es un volcán casero?</h4></div>
+						<div class="panel-body"><p align="justify">Es un experimento que trata de simular una erupción volcánica aprovechando el desprendimiento de gas (dióxido de carbono, CO2), que tiene lugar en la reacción ácido-base entre el vinagre y el bicarbonato. Así que, prepara ingredientes de sobra porque no se van a conformar con una única erupción.
+					</p></div></div>
+									
+				</aside>
+				<article class="col-md-6">
+				<br>
+				
+				<div class="panel panel-success">
+				<div class="panel-heading"><h3>Bienvenido<strong> {{usuario|capfirst}}</strong></h3><p align="left">La última vez que ingresaste fue el {{usuario.last_login}}</div>
+				<div class="panel-body">
+			
+					<table border="1" class="table table-bordered table-hover table-condensed">
+				     <caption class="text-danger"><strong>Tabla de escenarios:</strong></caption>
+						
+						<tr>
+							<th scope="col" class="text-success" id="escenario" align="center">Escenario</th>
+							<th scope="col" class="text-success" id="rango" align="center">Rango de Vinagre (ml)</th>
+							<th scope="col" class="text-success" id="rango" align="center">Rango de Bicarbonato (gr)</th>
+						</tr>
+						<tr id="fila2">
+							<td  headers="escenario" class="text-info" align="center">I Erupción</td>
+							<td id="fil2colm2" headers="rango" class="text-info" align="center"> 100=&lt;Vinagre&lt;=150</td>
+							<td id="fil2colm3" headers="rango" class="text-info" align="center">20=&lt;Bicarbonato&lt;=40</td>
+						</tr>
+						<tr id="fila3">
+							<td headers="escenario" class="text-info" align="center" >II Pre-Erupción</td>
+							<td id="fil3colm2" headers="rango" class="text-info" align="center">50=&lt;Vinagre&lt;=99</td>
+							<td id="fil3colm3" headers="rango" class="text-info" align="center">8=&lt;Bicarbonato&lt;=19</td>
+						</tr>
+						<tr id="fila4">
+							<td  headers="escenario" class="text-info" align="center">III Sin efecto </td>
+							<td id="fil4colm2"headers="rango" class="text-info" align="center">Vinagre&lt;50 ó Vinagre&gt;150</td>
+							<td id="fil4colm3" headers="rango" class="text-info" align="center">Bicarbonato&lt;8 ó Bicarbonato&gt;40</td>
+						</tr>
+					</table>
+					</div></div>
+					<div class="panel panel-success">
+					<div class="panel-heading"><h4 align="center" class="text-success">Introduce las cantidades de vinagre y bicarbonato, luego presiona el botón enviar. ¡A ver qué pasa!</h4></strong></div></div>
+					
+
+					<form id='formulario' method='post' action='' > {% csrf_token %}
+					
+					<p><label for="id_bicarbonato">Bicarbonato (gr):</label> <input class="form-control" id="bicarbonato" name="bicarbonato" step="3" type="range" value="0" min="0" max="100" oninput="bicarbonatoSlider(value)" required/><output for="bicarbonato" id="bicarbonatoSalida">0</output></p>
+					<p><label for="id_vinagre">Vinagre (ml):</label> <input class="form-control" id="vinagre" name="vinagre" step="3" type="range" value="0" min="0" max="200" oninput="vinagreSlider(value)" required/><output for="vinagre" id="vinagreSalida">0</output></p>
+					<p><input class="form-control btn btn-success" type='submit' value='Enviar'/></p>
+				</form>
+				
+				<center>
+				<div  id="volcan">
+					<canvas  id="canvas" width="493" height="280">Tu navegador no soporta canvas</canvas>
+					<canvas  id="nubBlanca" width="493" height="150">Tu navegador no soporta canvas</canvas>
+					<canvas  id="bolasFuego" width="493" height="150">Tu navegador no soporta canvas</canvas>
+					<canvas  id="ceniza" width="493" height="150">Tu navegador no soporta canvas</canvas>
+				</div>
+
+			{% if  primero %}
+				<p class="text-succes">La cantidad de vinagre es: <strong>{{vinagre}}</strong> gramos</p>
+				<p class="text-succes">La cantidad de bicarbonato es: <strong>{{bicarbonato}}</strong> vinagre</p>
+				<input class="form-control btn btn-primary" type="button" value="Iniciar" id="boton">
+				<div class="alert alert-success"><button class="close" data-dismiss="alert"><span>&times;</span></button> <strong>¡¡¡Felicidades {{usuario|capfirst}} !!!</strong> Ya puedes hacer un volcán casero</div>
+				
+			{% elif segundo %}
+				<p class="text-info">La cantidad de vinagre es: <strong>{{vinagre}}</strong> gramos</p>
+				<p class="text-info">La cantidad de bicarbonato es: <strong>{{bicarbonato}}</strong> vinagre</p>
+			  <input style="display:none;" class="form-control btn btn-primary" type="button" value="Iniciar" id="boton">
+				<input class="form-control btn btn-primary" type="button" value="Iniciar" id="btonNube"> 
+			 <div class="alert alert-info"><button class="close" data-dismiss="alert"><span>&times;</span></button> <strong>¡¡¡Estuviste Cerca {{usuario|capfirst}}!!!</strong> Revisa la tabla para generar una erupción exitosa</div>
+			
+
+			{% elif tercero %}
+				<p class="text-danger">La cantidad de vinagre es: <strong>{{vinagre}}</strong> gramos</p>
+				<p class="text-danger">La cantidad de bicarbonato es: <strong>{{bicarbonato}}</strong> vinagre</p>
+				<div class="alert alert-danger"><button class="close" data-dismiss="alert"><span>&times;</span></button> <strong>¡¡¡Fallastes {{usuario|capfirst}}!!!</strong> Revisa la tabla e intenta nuevamente</div>
+			{% endif %}
+			</center>
+	
+			</article>
+				
+					<aside class="col-md-3">
+					<h4 align="right"><a href="/experimento/cerrarsesion">Cerrar Sesión</a></h4>
+					
+					{% load staticfiles %}
+					<img src="{% static 'Images/nino.gif' %}" width="125" height="130"><br><br> 	
+											
+					
+						{% if experimentosUsuario %}
+						
+						<ul class="list-group">
+						<h5 align="center" class="text-success list-group-item active ">{{usuario|capfirst}}, actualmente se tienen registrados {{numVolcanes}} experimentos: </h5><br>
+						
+						{% for volcan in volcanes %}
+
+						{% if usuario == volcan.usuario %}
+
+						
+
+							<li class="list-group-item list-group-item-info"><h5><strong>Experimento-{{volcan.id}}</h5> </strong><a href="experimento/borrar/{{volcan.id}}"> Eliminar</a> <ul class="list-group"><li class="list-group-item list-group-item-success">Cantidad de vinagre: <strong>{{volcan.vinagre}} ml</strong></li>
+							<li class="list-group-item list-group-item-success">Cantidad de bicarbonato: <strong>{{volcan.bicarbonato}} gr </strong></li>
+							<li class="list-group-item list-group-item-success">Escenario: <strong>{{volcan.escenario}}</strong></li>
+						</ul>
+			
+
+							</li>
+							
+				</ul>{% endif %}{% endfor %}{% endif %}
+				
+						
+					</aside>
+		</section>
+	</div>
+
+	
+	
+	{% endblock %}			
+				
+
+

@@ -1,0 +1,25 @@
+{% extends 'Base.html' %}
+{% block titulo %}Nuevo Usuario{% endblock %}
+{% block contenido %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4"><br><br><br><br>
+<form class="bg-info" id='formulario' method='post' action=''> {% csrf_token %}
+	<br>
+	<strong><h3 align="center" class="text-info">Registrar Usuario</h3></strong><br><br>
+	<table><tr><th><label for="id_username">Nombre de usuario:</label></th><td><input class="form-control" id="id_username" maxlength="30" name="username" type="text" required/><br /></td></tr>
+<tr><th><label for="id_password1">Contraseña:</label></th><td><input class="form-control" id="id_password1" name="password1" type="password" required/></td></tr>
+<tr><th><br><label for="id_password2">Contraseña (confirmación):</label></th><td><br><input class="form-control" id="id_password2" name="password2" type="password" required/><br /></td></tr></table>
+	<br>
+	<p><input class="form-control btn btn-primary" type='submit' value='Registrar'/></p>
+	<p><a href="/experimento">Regresar al inicio</a></p>
+</form>
+
+{% if existe %}
+<div class="alert alert-danger"><button class="close" data-dismiss="alert"><span>&times;</span></button> Lo sentimos, ya existe un usuario con el mismo nombre o las contraseñas no coinciden </div>
+{% endif %}
+
+		</div></div></div>
+	<br><br>
+
+{% endblock %}
