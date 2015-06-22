@@ -1,0 +1,30 @@
+{% extends 'Base.html' %}
+{% block titulo %} IniciarSesión{% endblock %}
+
+
+	{% block contenido %}
+			<br><br>
+		<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+
+			<form  class="bg-info" id='formulario' method='POST' action=''> 
+				{% csrf_token %}
+					<br>
+					<strong><h3 align="center" class="text-info">Iniciar Sesión</h3></strong><br><br>
+						<label for="id_username">Nombre de usuario:</label><input class="form-control" id="id_username" maxlength="254" name="username" type="text" required />
+						<label for="id_password">Contraseña:</label></th><td><input class="form-control" id="id_password" name="password" type="password" required/>
+						<p><br><input class="form-control btn btn-primary" type='submit' value='Ingresar' name="boton2"/></p>
+						<p align="center"><a href="/experimento/registrarusuario">Registrar Usuario</a></p>
+						<p align="center"><a href="/">Regresar al Inicio</a></p>
+					</form>
+					{% if acceder %}
+					<div class="alert alert-danger"><button class="close" data-dismiss="alert"><span>&times;</span></button> Lo sentimos, el usuario o la contraseña no existen o no coinciden</div>
+			
+			{% endif %}
+
+		</div></div></div>
+		<br><br><br><br><br>
+
+	{% endblock %}
+</div>
