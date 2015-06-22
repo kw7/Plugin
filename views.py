@@ -9,7 +9,6 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 
 
-# Create your views here.
 
 def iniciarsesion(request):
             if not request.user.is_anonymous():
